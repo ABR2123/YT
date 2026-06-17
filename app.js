@@ -1,7 +1,7 @@
 // Music Player with YouTube API
 class MusicPlayer {
     constructor() {
-        this.apiKey = 'YOUR_YOUTUBE_API_KEY'; // Get this from Google Cloud Console
+        this.apiKey = 'AIzaSyB8h1o0UUNHeNlSGaiLOkL-cM_vhwFtYoU';
         this.player = null;
         this.playlist = [];
         this.currentTrack = 0;
