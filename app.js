@@ -1,7 +1,6 @@
-// Music Player with YouTube API
+// Music Player with YouTube API via Backend Proxy
 class MusicPlayer {
     constructor() {
-        this.apiKey = 'AIzaSyB8h1o0UUNHeNlSGaiLOkL-cM_vhwFtYoU';
         this.player = null;
         this.playlist = [];
         this.currentTrack = 0;
@@ -63,13 +62,12 @@ class MusicPlayer {
         if (!query) return;
 
         try {
-            const response = await fetch(
-                `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query)}&type=video&maxResults=10&key=${this.apiKey}`
-            );
+            // Use backend proxy endpoint instead of direct YouTube API call
+            const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
             const data = await response.json();
 
             if (data.error) {
-                alert('Error: ' + data.error.message + '. Make sure your API key is valid.');
+                alert('Error: ' + data.error.message);
                 return;
             }
 
@@ -77,7 +75,7 @@ class MusicPlayer {
             this.displaySearchResults();
         } catch (error) {
             console.error('Search error:', error);
-            alert('Error searching YouTube. Make sure your API key is valid.');
+            alert('Error searching YouTube. Please try again.');
         }
     }
 
